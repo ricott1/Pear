@@ -16,8 +16,9 @@ contract Agora
     }
 
     struct Paper {
-      address author;
+      address author;//looks bad here but one can not read it from the contract
       uint field;
+      uint reputation;
       address[] reviewKeys;
       uint timestamp;
       bool exists;
@@ -63,21 +64,21 @@ contract Agora
     function submitPaper(uint field, uint stake, address key) public returns(bool) {
         //if (!hasAccount(msg.sender)) return false;
         //if (accounts[msg.sender].reputation[field] < stake) return false;
-        require (hasAccount(msg.sender));
-        require (hasAccount(msg.sender));        
+        require (hasAccount(msg.sender));       
         require (newPaper(msg.sender, field, key));
         accounts[msg.sender].reputation[field] -= stake;
         accounts[msg.sender].stake[field] += stake;
         return true;
     }
 
-    function newPaper(address addr, uint f, address key) private returns(bool) {
+    function newPaper(address addr, uint field, address key) private returns(bool) {
         //if (!hasAccount(addr)) return false;
         require (hasAccount(addr));
         Paper paper;
         paper.author = addr;
-        paper.field = f;
+        paper.field = field;
         paper.timestamp = now;
+        paper.reputation = 0;
         paper.exists = true;
         papers[key] = paper;
         return true;
@@ -136,10 +137,10 @@ contract Agora
         return accounts[addr].reputation[field];
     }
 
-    function getPaperAuthor(address key) private constant returns(address) {
+    function getPaperTimestamp(address key) public constant returns(uint) {
         //if (!papers[key].exists) return 0;
         require (papers[key].exists);
-        return papers[key].author;
+        return papers[key].timestamp;
     }
 
 }

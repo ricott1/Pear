@@ -97,8 +97,11 @@ App = {
       
     }).then(function (value){
       //perform the real transaction
-      return AgoraInstance.submitPaper.sendTransaction(0, stake, paperKey,{from:web3.eth.coinbase, gas: 180000});
+      return AgoraInstance.submitPaper.sendTransaction(0, stake, paperKey,{from:web3.eth.coinbase, gas: 1800000});
 
+    }).then(function (v){
+      papersData.push(paperKey);
+      console.log(papersData);
     })
   },
 /*
@@ -117,28 +120,35 @@ App = {
 //get the rep of all users
 */
   getRep: function(){
-	var table = document.getElementById('reptable');
-  	setInterval(function(){
-	i = 1;
-  //table.innerHTML = "";
-  	for (var key in accountsData) {
-      if(accountsData[key]["address"] != "") {
-        if (i>=table.rows.length) {
-          var row = table.insertRow(i);
-          var name = row.insertCell(0);
-          var rep = row.insertCell(1);
-        } else{
-          var row = table.rows[i];
-          var name = row.cells[0];
-          var rep = row.cells[1];
+  	var table = document.getElementById('reptable');
+    setInterval(function(){
+  	  i = 1;
+    //table.innerHTML = "";
+    	for (var key in accountsData) {
+        if(accountsData[key]["address"] != "") {
+          if (i>=table.rows.length) {
+            var row = table.insertRow(i);
+            var name = row.insertCell(0);
+            var rep = row.insertCell(1);
+            var paperTime = row.insertCell(2);
+          } else{
+            var row = table.rows[i];
+            var name = row.cells[0];
+            var rep = row.cells[1];
+            var paperTime = row.cells[2];
+          }
+  		
+    		i++;
+    		name.innerHTML = key;
+    		App.getUserRep(key, 0, rep);
+        
+        
         }
-		
-		i++;
-		name.innerHTML = key;
-		App.getUserRep(key, 0, rep);
       }
-    }
-  	}, 1000)
+      for (var j = papersData.length - 1; j >= 0; j--) {
+        App.getPaperTimestamp(papersData[j], paperTime);
+      }
+    }, 1000)
 
   },
 
@@ -150,6 +160,17 @@ App = {
           }).then(function(rep) {
             accountsData[key]['reputation'] = rep;
             entry.innerHTML = rep;
+
+          })
+
+  },
+
+  getPaperTimestamp: function(key, entry){
+    App.contracts.Agora.deployed().then(function(instance){
+      AgoraInstance = instance;
+      return AgoraInstance.getPaperTimestamp.call(key);
+          }).then(function(timestamp) {
+            entry.innerHTML = timestamp;
 
           })
 

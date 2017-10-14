@@ -3,3 +3,5 @@ var accountsData = {
 	"Carlos" : {"submissionKey" : "munothiella", "address" : ""},
 	"Ale" : {"submissionKey" : "ale", "address" : ""}
     };
+
+var papersData = [];
