@@ -18,7 +18,7 @@ contract Agora
     struct Paper {
       address author;//looks bad here but one can not read it from the contract
       uint field;
-      uint reputation;
+      //uint reputation;
       address[] reviewKeys;
       uint timestamp;
       bool exists;
@@ -78,7 +78,7 @@ contract Agora
         paper.author = addr;
         paper.field = field;
         paper.timestamp = now;
-        paper.reputation = 0;
+        //paper.reputation = 0;
         paper.exists = true;
         papers[key] = paper;
         return true;
