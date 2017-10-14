@@ -7,7 +7,20 @@
 
 	<title>submission</title>
 </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+<script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/sha1.js"></script>
+    <script type="text/javascript" src="js/accounts.js"></script>
+<script src="js/app.js"></script>
+<table id='reptable' style="width:100%">
+  <tr>
+    <th>User</th>
+    <th>Reputation</th> 
+  </tr>
+</table>
 <h1>Submission Form</h1>
 
 <body>
@@ -15,10 +28,12 @@
     <div id = "actionsDiv" > 
         <input type="text" id="ID" value="">
         <input type="text" id="stake" value="">
-      <button id="submissionButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; " >Submission</button>
+        
+        <button id="createButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; " >Create</button>
+      <button id="submissionButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; display: none" >Submission</button>
 
 
-      <button id="reviewButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; ">Review</button>
+      <button id="reviewButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; display: none">Review</button>
 
 
     </div>

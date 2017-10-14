@@ -40,20 +40,23 @@ App = {
 
   bindEvents: function() {
     
-    $(document).on('click', '#loginButton', function() {
-        App.createAccount();
-        $(document).on('click', '#submissionButton', function() {
-            App.submitPaper($(this));
+    $(document).on('click', '#createButton', function() {
+      var user = localStorage.getItem("loggedUser");
+        App.createAccount(user);
+
+    });
+    $(document).on('click', '#submissionButton', function() {
+      var user = localStorage.getItem("loggedUser");
+            App.submitPaper(user);
         });
 
         $(document).on('click', '#reviewButton', function() {
             App.reviewPaper($(this));
         });
-    });
   //App.createAccount();
   },
 
-  createAccount : function() {
+  createAccount : function(user) {
     App.contracts.Agora.deployed().then(function(instance){
       AgoraInstance = instance;
       
@@ -65,17 +68,22 @@ App = {
       return AgoraInstance.newAccount.sendTransaction({from:web3.eth.coinbase, gas: 180000});
 
     }).then(function (v){
-      accountsData[loggedUser]["address"] = web3.eth.coinbase;
+      accountsData[user]["address"] = web3.eth.coinbase;
       console.log(accountsData);
+      $('#submissionButton').show();
+        $('#reviewButton').show();
+        $('#createButton').hide();
 
     })
   },
 
-  submitPaper: function(){
+  submitPaper: function(user){
     var paperKey;
     //var username = $("#username").value;
     //var accountAddress = accountsData[username];
-    text = accountsData[loggedUser]["address"] + $('#ID').val;
+
+
+    text = accountsData[user]["address"] + $('#ID').val;
     paperKey = SHA1(text);
     console.log(paperKey);
     App.contracts.Agora.deployed().then(function(instance){
