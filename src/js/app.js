@@ -42,7 +42,7 @@ App = {
     
     $(document).on('click', '#createButton', function() {
       var user = localStorage.getItem("loggedUser");
-        App.createAccount(user);
+      App.createAccount(user);
 
     });
     $(document).on('click', '#submissionButton', function() {

@@ -49,15 +49,11 @@
     <script type="text/javascript" src="js/accounts.js"></script>
     <script type="text/javascript"> 
       var loggedUser;
-      var loggedAddress;
       function login(username, password) {
         if(accountsData[username]) {
           //loggedUser = username;
           localStorage.setItem("loggedUser", username);
-          //loggedAddress = accountsData[username]["address"];
-          //$('#loginDiv').hide();
-          //$('#actionsDiv').show().children().show();
-          console.log(loggedAddress);
+          
           window.location='dashboard.html';
         
       } else{
