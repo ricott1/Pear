@@ -115,11 +115,17 @@ App = {
 //get the rep of all users
 */
   getRep: function(){
+	var table = document.getElementById('reptable');
   	setInterval(function(){
+	i = 1;
   	for (var key in accountsData) {
       if(accountsData[key]["address"] != "") {
-        rep = getUserRep(accountsData[key]["address"], 0);
-
+		var row = table.insertRow(-1);
+		var name = row.instertCell(0);
+		var rep = row.inserCell(1);
+		i++;
+		name.innerHTML = key;
+		rep.innerHTML = getUserRep(accountsData[key]['address'], 0);
       }
     }
   	}, 5000)
