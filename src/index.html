@@ -57,11 +57,14 @@
     <script type="text/javascript" src="js/accounts.js"></script>
     <script type="text/javascript"> 
       var loggedIn;
+      var loggedAddress;
       function login(username, password) {
         if(accountsData[username]) {
           loggedIn = username;
+          loggedAddress = accountsData[username]["address"];
           $('#loginDiv').hide();
           $('#actionsDiv').show().children().show();
+          console.log(loggedAddress);
         }
       }
     </script>
