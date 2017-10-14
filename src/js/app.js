@@ -52,12 +52,12 @@ App = {
     var paperKey;
     var username = $("#username").value;
     var accountAddress = accountsData[username];
-    text = accountAddress + $('#ID').value;
+    text = accountAddress + $('#ID').val;
     paperKey = SHA1(text);
        App.contracts.Agora.deployed().then(function(instance){
 		AgoraInstance = instance;
-		id = $("#ID").value;
-		stake = $("#stake").value;
+		id = $("#ID").val;
+		stake = $("#stake").val;
 
 		return AgoraInstance.submitPaper(id, stake, {from:web3.eth.coinbase,
 			gas:180000});
@@ -67,9 +67,9 @@ App = {
   reviewPaper: function(button){
        App.contracts.Agora.deployed().then(function(instance){
 		AgoraInstace = instance;
-		id = $("#ID").value;
-		stake = $("#stake").value;
-		score = $("#score").value;
+		id = $("#ID").val;
+		stake = $("#stake").val;
+		score = $("#score").val;
 
 		return AgoraInstance.submitReview(id, stake, score, {from:web3.eth.coinbase,
 			gas:180000});
@@ -77,6 +77,22 @@ App = {
 				       })
 
 	     },
+
+//get the rep of all users
+getRep: function(){
+	setInterval(function(){
+	$.getJSON('Agora.json', function(data) {
+		$.each(data.user, 
+	}
+	//read json with users
+	// for each user call contract for rep and fill table
+	App.contracts.Agora.deployed().then(function(instance){
+		AgoraInstance = instance;
+			return AgoraInstance;
+				})
+	}, 5000)
+
+	},
 
   sit: function(button) {
     App.contracts.Agora.deployed().then(function(instance){
