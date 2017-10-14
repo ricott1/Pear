@@ -84,12 +84,13 @@ App = {
     //var accountAddress = accountsData[username];
 
 
-    text = accountsData[user]["address"] + $('#ID').val;
+    text = accountsData[user]["address"] + $('#ID').val();
     paperKey = SHA1(text);
     console.log(paperKey);
     App.contracts.Agora.deployed().then(function(instance){
   		AgoraInstance = instance;
-  		stake = $("#stake").val;
+  		stake = $("#stake").val();
+
 
 
   		return AgoraInstance.submitPaper.call(0, stake, paperKey);

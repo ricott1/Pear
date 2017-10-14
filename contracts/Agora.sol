@@ -45,7 +45,7 @@ contract Agora
         require(!hasAccount(msg.sender)); //gonna use require after Metropolis
         //if (hasAccount(msg.sender)) return false;
         accounts[msg.sender].hasAccount = true;
-        accounts[msg.sender].reputation = [0,0,0];
+        accounts[msg.sender].reputation = [10,10,10];
         return true;
     }
 
