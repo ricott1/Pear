@@ -88,14 +88,14 @@ App = {
     console.log(paperKey);
     App.contracts.Agora.deployed().then(function(instance){
   		AgoraInstance = instance;
-  		id = $("#ID").val;
   		stake = $("#stake").val;
 
-  		return AgoraInstance.submitPaper.call();
+
+  		return AgoraInstance.submitPaper.call(0, stake, paperKey);
       
     }).then(function (value){
       //perform the real transaction
-      return AgoraInstance.submitPaper.sendTransaction(id, stake, {from:web3.eth.coinbase, gas: 180000});
+      return AgoraInstance.submitPaper.sendTransaction(0, stake, paperKey,{from:web3.eth.coinbase, gas: 180000});
 
     })
   },
