@@ -360,8 +360,14 @@
       "links": {},
       "address": "0x80b3689bda619db85d72cda6896658fa28e24652",
       "updated_at": 1508014970883
+    },
+    "1508018980803": {
+      "events": {},
+      "links": {},
+      "address": "0x554abc8b81828a806b2ba69944402185806fc6bc",
+      "updated_at": 1508018994035
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1508014970883
+  "updated_at": 1508018994035
 }

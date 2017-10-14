@@ -68,10 +68,14 @@ App = {
       return AgoraInstance.newAccount.sendTransaction({from:web3.eth.coinbase, gas: 980000});
 
     }).then(function (v){
-      console.log(user);
+      console.log(localStorage);
       var accData = JSON.parse(localStorage.accountsData);
+      console.log(accData);
+
       accData[user]["address"] = web3.eth.coinbase;
+      localStorage.clear()
       localStorage.accountsData = JSON.stringify(accData);
+      console.log(localStorage);
 
       $('#submitDiv').show().children().show();
       $('#createButton').hide();
@@ -132,7 +136,7 @@ App = {
   	  i = 1;
     //table.innerHTML = "";
       var accData = JSON.parse(localStorage.accountsData);
-      
+      console.log(accData);
     	for (var key in accData) {
         if("address" in accData[key]) {
           if (i>=usertable.rows.length) {

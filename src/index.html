@@ -43,12 +43,13 @@
       var loggedUser;
       console.log(JSON.stringify(accountsData), localStorage);
       console.log(!localStorage.accountsData);
-      localStorage.clear();
-      console.log(!localStorage.accountsData);
+      
+
       function login(username, password) {
         
         if(!localStorage.accountsData) {
             localStorage.accountsData = JSON.stringify(accountsData);
+            console.log(accData);
 
           }
         if(accountsData[username]) {
