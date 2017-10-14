@@ -60,15 +60,14 @@ contract Agora
         //if (!hasAccount(msg.sender)) return false;
         //if (accounts[msg.sender].reputation[field] < stake) return false;
         require (hasAccount(msg.sender));
-        require (hasAccount(msg.sender));
-        
+        require (hasAccount(msg.sender));        
         require (newPaper(msg.sender, field, key));
         accounts[msg.sender].reputation[field] -= stake;
         accounts[msg.sender].stake[field] += stake;
         return true;
     }
 
-    function newPaper(address addr, uint f, address k) private returns(bool) {
+    function newPaper(address addr, uint f, address key) private returns(bool) {
         //if (!hasAccount(addr)) return false;
         require (hasAccount(addr));
         Paper paper;
@@ -76,7 +75,7 @@ contract Agora
         paper.field = f;
         paper.timestamp = now;
         paper.exists = true;
-        papers[k] = paper;
+        papers[key] = paper;
         return true;
     }
 

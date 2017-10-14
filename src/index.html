@@ -25,20 +25,20 @@
           <br/>
         </div>
       </div>
+  <div id = "loginDiv">
+    Username:<br>
+    <input type="text" id="username" value="">
+    <br>
+    Password:<br>
+    <input type="text" id="password" value="">
+    <br><br>
+    <input type="submit" value="Submit" onclick="login($('#username').val(), $('#password').val())">
+  </div>
+    <div id = "actionsDiv" > 
 
-  Username:<br>
-  <input type="text" name="username" value="">
-  <br>
-  Password:<br>
-  <input type="text" name="password" value="">
-  <br><br>
-  <input type="submit" value="Submit">
+      <button id="submission" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; display: none; " >Submission</button>
 
-    <div class="container" style="background: url(images/table.jpg) no-repeat center; background-size: 100% 100%; width:100%"> 
-
-      <button id="submission" style="border: 6px solid black; position: relative;left: 435px; top : 600px; width: 100px " >Submission</button>
-
-      <button id="review" style="border: 6px solid black; position: relative;left: 435px; top : 600px; width: 100px " >Review</button>
+      <button id="review" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; display: none ; " >Review</button>
 
     </div>
 
@@ -50,6 +50,16 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
-    <script src="js/app.js"></script>
+    <script type="text/javascript" src="js/accounts.js"></script>
+    <script type="text/javascript"> 
+      var loggedIn;
+      function login(username, password) {
+        if(accountsData[username]) {
+          loggedIn = username;
+          $('#loginDiv').hide();
+          $('#actionsDiv').show();
+        }
+      }
+    </script>
   </body>
 </html>
