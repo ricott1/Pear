@@ -47,12 +47,12 @@ App = {
     });
     $(document).on('click', '#submissionButton', function() {
       var user = localStorage.getItem("loggedUser");
-            App.submitPaper(user);
-        });
+      App.submitPaper(user);
+    });
 
-        $(document).on('click', '#reviewButton', function() {
-            App.reviewPaper($(this));
-        });
+    $(document).on('click', '#reviewButton', function() {
+      App.reviewPaper();
+    });
   //App.createAccount();
   },
 
@@ -70,7 +70,7 @@ App = {
     }).then(function (v){
       accountsData[user]["address"] = web3.eth.coinbase;
       console.log(accountsData);
-      $('#actionsDiv').show().children().show();
+      $('#submitDiv').show().children().show();
       $('#createButton').hide();
       App.getRep();
 
@@ -100,8 +100,8 @@ App = {
       console.log(papersData);
     })
   },
-/*
-  reviewPaper: function(button){
+
+  reviewPaper: function(){
     App.contracts.Agora.deployed().then(function(instance){
   		AgoraInstace = instance;
   		id = $("#ID").val;
@@ -113,8 +113,7 @@ App = {
 
 	},
 
-//get the rep of all users
-*/
+
   getRep: function(){
   	var usertable = document.getElementById('userTable');
     setInterval(function(){
@@ -148,7 +147,22 @@ App = {
             var paperKeyCell = row.cells[0];
             var paperTime = row.cells[1];
           }
-          paperKeyCell.innerHTML = papersData[j];
+          var btn = document.createElement('input');
+          btn.type = "button";
+          btn.className = "btn";
+          btn.value = papersData[j];
+          //btn.onclick = (function() {return function() {
+            //                                            $("#reviewDiv").show().children().show();
+              //                                          $("#reviewInput").val(papersData[j]);
+                //                                        }})();
+          btn.onclick = function () {
+                          $("#reviewDiv").show().children().show();
+                          $("#reviewInput").text($(this).value);
+                        }
+          paperKeyCell.innerHTML = "";
+          paperKeyCell.appendChild(btn);
+
+          //paperKeyCell.innerHTML = papersData[j];
         App.getPaperTimestamp(papersData[j], paperTime);
       }
     }, 1000)

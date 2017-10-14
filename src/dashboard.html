@@ -3,8 +3,6 @@
 
 <head>
 
-    
-
 	<title>submission</title>
 </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -35,7 +33,7 @@
 
 <body>
 
-    <div id = "actionsDiv" style="display: none"> 
+    <div id = "submitDiv" style="display: none"> 
     <br> Private key </br>
 
         <input type="text" id="ID" value="veryPrivate">
@@ -46,9 +44,20 @@
       <button id="submissionButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; " >Submission</button>
 
 
-      <button id="reviewButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; ">Review</button>
+      
 
 
+    </div>
+    <div id= "reviewDiv" style="display: none">
+        <br> Quality
+        <input id="reviewQuality" "></input>
+        <br> Impact
+        <input id="reviewImpact" "></input>
+        <br> Novelty
+        <input id="reviewNovelty" "></input>
+        <br> Paper Key
+        <input id="reviewInput" "></input>
+        <button id="reviewButton" >Review</button>
     </div>
     <button id="createButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; " >Create</button>
 		
