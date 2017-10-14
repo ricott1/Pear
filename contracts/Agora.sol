@@ -3,20 +3,21 @@ pragma solidity ^0.4.4;
 contract Agora 
 {
     struct Account {
-      uint[3] reputation = [0,0,0];
+      uint[3] reputation;
       string email;
-      bool hasAccount = false;
+      bool hasAccount;
     }
 
     mapping (address => Account) accounts;
         
+    address owner;
+
     modifier onlyOwner {
         require(msg.sender == owner);
         _;
     } 
 
     function Agora() {
-        deck = shuffle(deck);
         owner = msg.sender;
     }
 
@@ -25,6 +26,7 @@ contract Agora
         //require(!hasAccount(msg.sender)); gonna use require after Metropolis
         if (hasAccount(msg.sender)) return false;
         accounts[msg.sender].hasAccount = true;
+        accounts[msg.sender].reputation = [0,0,0];
         return true;
     }
 
