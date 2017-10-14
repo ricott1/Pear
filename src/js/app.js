@@ -50,7 +50,7 @@ App = {
 
   submitPaper: function(button){
     var paperKey;
-    var username = 'Pericles';
+    var username = $("#username").value;
     var accountAddress = accountsData[username];
     text = accountAddress + $('#ID').value;
     paperKey = SHA1(text);
@@ -59,7 +59,8 @@ App = {
 		id = $("#ID").value;
 		stake = $("#stake").value;
 
-		return AgoraInstance.submitPaper(id, stake);
+		return AgoraInstance.submitPaper(id, stake, {from:web3.eth.coinbase,
+			gas:180000});
 			       })
   },
 
@@ -70,7 +71,8 @@ App = {
 		stake = $("#stake").value;
 		score = $("#score").value;
 
-		return AgoraInstance.submitReview(id, stake, score);
+		return AgoraInstance.submitReview(id, stake, score, {from:web3.eth.coinbase,
+			gas:180000});
 	
 				       })
 
