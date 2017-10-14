@@ -180,7 +180,7 @@ input:required:invalid {
 
 }
 
-input[type="submit"]{
+button{
     background-color: #E46FAB; /* Green */
     border: none;
     color: white;
