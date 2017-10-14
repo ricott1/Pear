@@ -81,6 +81,9 @@ App = {
 //get the rep of all users
 getRep: function(){
 	setInterval(function(){
+	$.getJSON('Agora.json', function(data) {
+		$.each(data.user, 
+	}
 	//read json with users
 	// for each user call contract for rep and fill table
 	App.contracts.Agora.deployed().then(function(instance){
