@@ -63,14 +63,14 @@ App = {
 			       })
   },
 
-  reviewPaper: function(stake, id, score){
+  reviewPaper: function(button){
        App.contracts.Agora.deployed().then(function(instance){
 		AgoraInstace = instance;
 		id = $("#ID").value;
 		stake = $("#stake").value;
 		score = $("#score").value;
-i
-	
+
+		return AgoraInstance.submitReview(id, stake, score);
 	
 				       })
 
