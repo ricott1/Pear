@@ -28,43 +28,52 @@ App = {
     $.getJSON('Agora.json', function(data){
 
       // get contract artifacts
-      var BaccaraArtifact = data;
-      App.contracts.Baccara= TruffleContract(BaccaraArtifact);  
+      var AgoraArtifact = data;
+      App.contracts.Agora= TruffleContract(AgoraArtifact);  
 
       //set provider
-      App.contracts.Baccara.setProvider(App.web3Provider);  
+      App.contracts.Agora.setProvider(App.web3Provider);  
     })
 
     return App.bindEvents();
   },
 
+
   bindEvents: function() {
-    $(document).on('click', '#sitButton', function() {
-        App.sit($(this));
+    $(document).on('click', '#submit', function() {
+        App.submitPaper($(this));
     });
 
-    $(document).on('click', '.cardButton', function() {
-        App.addExtraCard($(this));
+    $(document).on('click', '#review', function() {
+        App.reviewPaper($(this));
     });
   
   },
 
+  submitPaper: function(stake, id){
+
+  },
+
+  reviewPaper: function(stake, id, score){
+
+	     },
+
   sit: function(button) {
-    App.contracts.Baccara.deployed().then(function(instance){
-      BaccaraInstance = instance;
+    App.contracts.Agora.deployed().then(function(instance){
+      AgoraInstance = instance;
       //first thest if the call is succesful
-      return BaccaraInstance.newPlayer.call();
+      return AgoraInstance.newPlayer.call();
       
     }).then(function (value){
       //perform the real transaction
-      return BaccaraInstance.newPlayer.sendTransaction({from:web3.eth.coinbase,
+      return AgoraInstance.newPlayer.sendTransaction({from:web3.eth.coinbase,
         gas: 180000});
       
     }).then(function (value){
       button.prop('disabled',true);
       button.hide();
       $('#total').show();
-      return BaccaraInstance.getCards();
+      return AgoraInstance.getCards();
 
       }).then(function(cards) {
         $('.cardButton').show();
@@ -73,7 +82,7 @@ App = {
         var card2 = cards[1]%13;       
         $('#card1').css('background', 'url(images/' + card1 + '.png)');
         $('#card2').css('background', 'url(images/' + card2 + '.png)');
-        return BaccaraInstance.getTotal(cards);
+        return AgoraInstance.getTotal(cards);
       }).then(function(total) {
         console.log(total);
         $('#total').html(total.c[0]);
@@ -84,21 +93,21 @@ App = {
   },
   addExtraCard: function(button) {
     
-    App.contracts.Baccara.deployed().then(function(instance){
-      BaccaraInstance = instance;
-      return BaccaraInstance.addExtraCard.call();
+    App.contracts.Agora.deployed().then(function(instance){
+      AgoraInstance = instance;
+      return AgoraInstance.addExtraCard.call();
       
     }).then(function (value){
-      return BaccaraInstance.addExtraCard.sendTransaction({from:web3.eth.coinbase,
+      return AgoraInstance.addExtraCard.sendTransaction({from:web3.eth.coinbase,
         gas: 700000});
       
     }).then(function (value){
         button.prop('disabled',true);
-        return BaccaraInstance.getCards();
+        return AgoraInstance.getCards();
       }).then(function(cards) {
         var card3 = cards[2]%13;
         button.css('background', 'url(images/' + card3 + '.png)');
-        return BaccaraInstance.getTotal(cards);
+        return AgoraInstance.getTotal(cards);
       }).then(function(total) {
         console.log(total);
         $('#total').html(total.c[0]);
@@ -106,9 +115,9 @@ App = {
       console.log(reason);
     }) ;
     /*
-    return BaccaraInstance.getCard.call();
+    return AgoraInstance.getCard.call();
     }).then(function (value){
-        var card = BaccaraInstance.getCard.call();
+        var card = AgoraInstance.getCard.call();
         console.log(value);
         console.log(card);
         $('#address').html(value.c[0]);
