@@ -73,6 +73,7 @@ App = {
       $('#submissionButton').show();
         $('#reviewButton').show();
         $('#createButton').hide();
+        App.getRep();
 
     })
   },
@@ -118,25 +119,37 @@ App = {
 	var table = document.getElementById('reptable');
   	setInterval(function(){
 	i = 1;
+  //table.innerHTML = "";
   	for (var key in accountsData) {
       if(accountsData[key]["address"] != "") {
-		var row = table.insertRow(-1);
-		var name = row.instertCell(0);
-		var rep = row.inserCell(1);
+        if (i>=table.rows.length) {
+          var row = table.insertRow(i);
+          var name = row.insertCell(0);
+          var rep = row.insertCell(1);
+        } else{
+          var row = table.rows[i];
+          var name = row.cells[0];
+          var rep = row.cells[1];
+        }
+		
 		i++;
 		name.innerHTML = key;
-		rep.innerHTML = getUserRep(accountsData[key]['address'], 0);
+		App.getUserRep(key, 0, rep);
       }
     }
-  	}, 5000)
+  	}, 1000)
 
   },
 
-  getUserRep: function(address, field){
-    
+  getUserRep: function(key, field, entry){
+    var addr = accountsData[key]['address'];
     App.contracts.Agora.deployed().then(function(instance){
       AgoraInstance = instance;
-      return AgoraInstance.getReputation.call(address, field);
+      return AgoraInstance.getReputation.call(addr, field);
+          }).then(function(rep) {
+            accountsData[key]['reputation'] = rep;
+            entry.innerHTML = rep;
+
           })
 
   },
