@@ -37,6 +37,10 @@ contract Agora
         owner = msg.sender;
     }
  
+    function checkAccount() public constant returns(bool) {
+        return hasAccount(msg.sender);
+    }
+
     function newAccount() public returns(bool) {
         require(!hasAccount(msg.sender)); //gonna use require after Metropolis
         //if (hasAccount(msg.sender)) return false;

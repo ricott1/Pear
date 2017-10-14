@@ -32,7 +32,7 @@
     Password:<br>
     <input type="text" id="password" value="">
     <br><br>
-    <input type="submit" value="Submit" onclick="login($('#username').val(), $('#password').val())">
+    <input type="submit" value="Submit" id="loginButton" onclick="login($('#username').val(), $('#password').val())">
 
 <table id='reptable'style="width:100%">
   <tr>
@@ -41,16 +41,7 @@
   </tr>
 </table>
 
-  </div>
-    <div id = "actionsDiv" > 
-
-      <button id="submission" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; display: none;"onclick="window.location='submission.html';" >Submission</button>
-
-
-      <button id="review" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; display: none;" onclick="window.location='review.html';">Review</button>
-
-
-    </div>
+  
 
     
 
@@ -61,20 +52,22 @@
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
     <script src="js/sha1.js"></script>
-    <script src="js/app.js"></script>
+    
     <script type="text/javascript" src="js/accounts.js"></script>
     <script type="text/javascript"> 
-      var loggedIn;
+      var loggedUser;
       var loggedAddress;
       function login(username, password) {
         if(accountsData[username]) {
-          loggedIn = username;
+          loggedUser = username;
           loggedAddress = accountsData[username]["address"];
           $('#loginDiv').hide();
-          $('#actionsDiv').show().children().show();
+          //$('#actionsDiv').show().children().show();
           console.log(loggedAddress);
+          window.location='dashboard.html'
         }
       }
     </script>
+    <script src="js/app.js"></script>
   </body>
 </html>

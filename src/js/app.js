@@ -1,7 +1,7 @@
 App = {
 
   web3Provider: null,
-  contracts: {}
+  contracts: {},
 
   init: function() {
     
@@ -33,135 +33,98 @@ App = {
       App.contracts.Agora.setProvider(App.web3Provider);  
     })
 
+
     return App.bindEvents();
   },
 
 
   bindEvents: function() {
-    $(document).on('click', '#submitButton', function() {
+    $(document).on('click', '#submissionButton', function() {
         App.submitPaper($(this));
     });
 
     $(document).on('click', '#reviewButton', function() {
         App.reviewPaper($(this));
     });
-  
+    $(document).on('click', '#loginButton', function() {
+        App.createAccount();
+    });
+  //App.createAccount();
+  },
+
+  createAccount : function() {
+    App.contracts.Agora.deployed().then(function(instance){
+      AgoraInstance = instance;
+      
+      //first test if the call is succesful
+      return AgoraInstance.newAccount.call();
+      
+    }).then(function (value){
+      //perform the real transaction
+      return AgoraInstance.newAccount.sendTransaction({from:web3.eth.coinbase, gas: 180000});
+
+    }).then(function (v){
+      accountsData[loggedUser]["address"] = web3.eth.coinbase;
+      console.log(accountsData);
+
+    })
   },
 
   submitPaper: function(button){
     var paperKey;
-    var username = $("#username").value;
-    var accountAddress = accountsData[username];
-    text = accountAddress + $('#ID').val;
+    //var username = $("#username").value;
+    //var accountAddress = accountsData[username];
+    text = accountsData[loggedUser]["address"] + $('#ID').val;
     paperKey = SHA1(text);
-       App.contracts.Agora.deployed().then(function(instance){
-		AgoraInstance = instance;
-		id = $("#ID").val;
-		stake = $("#stake").val;
-
-		return AgoraInstance.submitPaper(id, stake, {from:web3.eth.coinbase,
-			gas:180000});
-			       })
-  },
-
-  reviewPaper: function(button){
-       App.contracts.Agora.deployed().then(function(instance){
-		AgoraInstace = instance;
-		id = $("#ID").val;
-		stake = $("#stake").val;
-		score = $("#score").val;
-
-		return AgoraInstance.submitReview(id, stake, score, {from:web3.eth.coinbase,
-			gas:180000});
-	
-				       })
-
-	     },
-
-//get the rep of all users
-getRep: function(){
-	setInterval(function(){
-	$.getJSON('Agora.json', function(data) {
-		$.each(data.user, 
-	}
-	//read json with users
-	// for each user call contract for rep and fill table
-	App.contracts.Agora.deployed().then(function(instance){
-		AgoraInstance = instance;
-			return AgoraInstance;
-				})
-	}, 5000)
-
-	},
-
-  sit: function(button) {
+    console.log(paperKey);
     App.contracts.Agora.deployed().then(function(instance){
-      AgoraInstance = instance;
-      //first thest if the call is succesful
-      return AgoraInstance.newPlayer.call();
+  		AgoraInstance = instance;
+  		id = $("#ID").val;
+  		stake = $("#stake").val;
+
+  		return AgoraInstance.submitPaper.call();
       
     }).then(function (value){
       //perform the real transaction
-      return AgoraInstance.newPlayer.sendTransaction({from:web3.eth.coinbase,
-        gas: 180000});
-      
-    }).then(function (value){
-      button.prop('disabled',true);
-      button.hide();
-      $('#total').show();
-      return AgoraInstance.getCards();
+      return AgoraInstance.submitPaper.sendTransaction(id, stake, {from:web3.eth.coinbase, gas: 180000});
 
-      }).then(function(cards) {
-        $('.cardButton').show();
-        $('#card3').prop('disabled',false);
-        var card1 = cards[0]%13;
-        var card2 = cards[1]%13;       
-        $('#card1').css('background', 'url(images/' + card1 + '.png)');
-        $('#card2').css('background', 'url(images/' + card2 + '.png)');
-        return AgoraInstance.getTotal(cards);
-      }).then(function(total) {
-        console.log(total);
-        $('#total').html(total.c[0]);
-      }, function(reason) {
-      console.log(reason);
     })
+  },
+/*
+  reviewPaper: function(button){
+    App.contracts.Agora.deployed().then(function(instance){
+  		AgoraInstace = instance;
+  		id = $("#ID").val;
+  		stake = $("#stake").val;
+  		score = $("#score").val;
+
+  		return AgoraInstance.submitReview(id, stake, score, {from:web3.eth.coinbase, gas:180000});
+	  });
+
+	},
+
+//get the rep of all users
+*/
+  getRep: function(){
+  	setInterval(function(){
+  	for (var key in accountsData) {
+      if(accountsData[key]["address"] != "") {
+        rep = getUserRep(accountsData[key]["address"], 0);
+      }
+    }
+  	}, 5000)
 
   },
-  addExtraCard: function(button) {
+
+  getUserRep: function(address, field){
     
     App.contracts.Agora.deployed().then(function(instance){
       AgoraInstance = instance;
-      return AgoraInstance.addExtraCard.call();
-      
-    }).then(function (value){
-      return AgoraInstance.addExtraCard.sendTransaction({from:web3.eth.coinbase,
-        gas: 700000});
-      
-    }).then(function (value){
-        button.prop('disabled',true);
-        return AgoraInstance.getCards();
-      }).then(function(cards) {
-        var card3 = cards[2]%13;
-        button.css('background', 'url(images/' + card3 + '.png)');
-        return AgoraInstance.getTotal(cards);
-      }).then(function(total) {
-        console.log(total);
-        $('#total').html(total.c[0]);
-    }, function(reason) {
-      console.log(reason);
-    }) ;
-    /*
-    return AgoraInstance.getCard.call();
-    }).then(function (value){
-        var card = AgoraInstance.getCard.call();
-        console.log(value);
-        console.log(card);
-        $('#address').html(value.c[0]);
-        $('#card1').css('background', 'url(images/10-of-hearts.png)');
-    }, function(reason) {
-      console.log(reason);
-    })    */
+      return AgoraInstance.getReputation.call(address, field);
+          })
+
   },
+
 
 
 
