@@ -62,7 +62,7 @@ textarea,
   outline: none;
   border-radius: 0;
   text-align: center;
-  background: rgb(232, 204, 227);
+  background: #dddddd; 
   /*font-weight: 700;*/
   /*font-family: 'Lato', georgia;*/
   font-family: 'HelveticaNeue', Helvetica;
@@ -114,8 +114,6 @@ input:required,
 	}
 
 input:focus {
-  border-bottom: 2px dashed rgba(255, 255, 255, 1);
-  background-color: rgba(255, 255, 255, 0.2);
 
       }
 
@@ -182,12 +180,16 @@ input:required:invalid {
 
 }
 
-button {
-  background: none;
-  border: none;
-  outline: none;
-  margin: 2vmax;
-
+input[type="submit"]{
+    background-color: #E46FAB; /* Green */
+    border: none;
+    color: white;
+    font-weight:bold;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 
 button:hover small {
