@@ -39,14 +39,14 @@ App = {
 
 
   bindEvents: function() {
-    
     $(document).on('click', '#createButton', function() {
-      var user = localStorage.getItem("loggedUser");
+
+      var user = sessionStorage.loggedUser;
       App.createAccount(user);
 
     });
     $(document).on('click', '#submissionButton', function() {
-      var user = localStorage.getItem("loggedUser");
+      var user = sessionStorage.loggedUser;
       App.submitPaper(user);
     });
 
@@ -68,8 +68,11 @@ App = {
       return AgoraInstance.newAccount.sendTransaction({from:web3.eth.coinbase, gas: 980000});
 
     }).then(function (v){
-      accountsData[user]["address"] = web3.eth.coinbase;
-      console.log(accountsData);
+      console.log(user);
+      var accData = JSON.parse(localStorage.accountsData);
+      accData[user]["address"] = web3.eth.coinbase;
+      localStorage.accountsData = JSON.stringify(accData);
+
       $('#submitDiv').show().children().show();
       $('#createButton').hide();
       App.getRep();
@@ -79,7 +82,9 @@ App = {
 
   submitPaper: function(user){
     var paperKey;
-    text = accountsData[user]["address"] + $('#ID').val();
+    var accData = JSON.parse(localStorage.accountsData);
+    text = accData[user]["address"] + $('#ID').val();
+
     paperKey = SHA1(text);
     console.log(paperKey);
     App.contracts.Agora.deployed().then(function(instance){
@@ -104,12 +109,19 @@ App = {
   reviewPaper: function(){
     App.contracts.Agora.deployed().then(function(instance){
   		AgoraInstace = instance;
-  		id = $("#ID").val;
-  		stake = $("#stake").val;
-  		score = $("#score").val;
+  		stake = 2;
+  		score = [$("#reviewQuality").val(), $("#reviewImpact").val(), $("#reviewNovelty").val()] ;
+      paperKey = $("#reviewInput").val();
+      reviewKey = SHA1(paperKey + "ale");
+  		return AgoraInstance.submitReview.call(0, stake, paperKey, reviewKey, score);
+      
+      
+    }).then(function (value){
+      //perform the real transaction
+      return AgoraInstance.submitReview.sendTransaction(0, stake, paperKey, reviewKey, score,{from:web3.eth.coinbase, gas: 300000});
 
-  		return AgoraInstance.submitReview(id, stake, score, {from:web3.eth.coinbase, gas:180000});
-	  });
+    });
+	  
 
 	},
 
@@ -119,8 +131,10 @@ App = {
     setInterval(function(){
   	  i = 1;
     //table.innerHTML = "";
-    	for (var key in accountsData) {
-        if(accountsData[key]["address"] != "") {
+      var accData = JSON.parse(localStorage.accountsData);
+      
+    	for (var key in accData) {
+        if("address" in accData[key]) {
           if (i>=usertable.rows.length) {
             var row = usertable.insertRow(i);
             var name = row.insertCell(0);
@@ -170,12 +184,14 @@ App = {
   },
 
   getUserRep: function(key, field, entry){
-    var addr = accountsData[key]['address'];
+    var accData = JSON.parse(localStorage.accountsData);
+    var addr = accData[key]['address'];
     App.contracts.Agora.deployed().then(function(instance){
       AgoraInstance = instance;
       return AgoraInstance.getReputation.call(addr, field);
           }).then(function(rep) {
-            accountsData[key]['reputation'] = rep;
+            accData[key]['reputation'] = rep;
+            localStorage.accountsData = JSON.stringify(accData);
             entry.innerHTML = rep;
 
           })

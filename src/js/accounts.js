@@ -1,7 +1,7 @@
 var accountsData = {
-    "Pericles" : {"submissionKey" : "Idontknow", "address" : ""},
-	"Carlos" : {"submissionKey" : "munothiella", "address" : ""},
-	"Ale" : {"submissionKey" : "ale", "address" : ""}
+    "Pericles" : {"submissionKey" : "Idontknow"},
+	"Carlos" : {"submissionKey" : "munothiella"},
+	"Ale" : {"submissionKey" : "ale"}
     };
 
 var papersData = [];
