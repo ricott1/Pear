@@ -24,9 +24,9 @@
     <input type="text" id="username" value="">
     <br>
     Password:<br>
-    <input type="text" id="password" value="">
+    <input type="text" id="password" value="" >
     <br><br>
-    <input type="submit" value="Login" id="loginButton" onclick="login($('#username').val(), $('#password').val())"><br><br>
+    <button  id="loginButton" onclick="login($('#username').val(), $('#password').val())">Login</button>
 
 
 	<hr>  
@@ -43,7 +43,7 @@
       var loggedUser;
       console.log(JSON.stringify(accountsData), localStorage);
       console.log(!localStorage.accountsData);
-      
+
 
       function login(username, password) {
         

@@ -167,7 +167,6 @@ App = {
           }
           var btn = document.createElement('input');
           btn.type = "button";
-          btn.className = "btn";
           btn.value = papersData[j];
           //btn.onclick = (function() {return function() {
             //                                            $("#reviewDiv").show().children().show();
@@ -175,7 +174,8 @@ App = {
                 //                                        }})();
           btn.onclick = function () {
                           $("#reviewDiv").show().children().show();
-                          $("#reviewInput").text($(this).value);
+                          console.log($("#reviewInput"));
+                          $("#reviewInput").val(($(this).val()));
                         }
           paperKeyCell.innerHTML = "";
           paperKeyCell.appendChild(btn);

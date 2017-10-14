@@ -38,16 +38,16 @@
 </div>
      
 
-<div id="forms">
-<h1>Submission Form</h1>
+
 
 <body>
 
     <div id = "submitDiv" style="display: none"> 
-    <br> Private key </br>
+    <h2>Submission Form</h2>
+    <br> Private key 
 
         <input type="text" id="ID" value="veryPrivate">
-        <br> Stake </br>
+        <br> Stake 
         <input type="text" id="stake" value="2">
         
         
@@ -57,20 +57,21 @@
       
     </div>
     <div id= "reviewDiv" style="display: none">
+    <h2>Review Form</h2>
+    <input id="reviewInput" value = "" style="width: 400px;" readonly></input>
         <br> Quality
-        <input id="reviewQuality" "></input>
+        <input id="reviewQuality" style="width: 12px;"></input>
         <br> Impact
-        <input id="reviewImpact" "></input>
+        <input id="reviewImpact" style="width: 12px;"></input>
         <br> Novelty
-        <input id="reviewNovelty" "></input>
-        <br> Paper Key
-        <input id="reviewInput" "></input>
+        <input id="reviewNovelty" style="width: 12px;"></input>
+        
+        
         <button id="reviewButton" >Review</button>
     </div>
-    <input  type="submit" value = "Create Account" id="createButton"  ></input>
+    <button id="createButton"  >Create Account</button>
 		
 
-</div>
         
 
 </body>
