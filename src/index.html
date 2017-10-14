@@ -9,6 +9,13 @@
     <!-- Bootstrap -->
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
     <link href="css/style.css" rel="stylesheet">
+
+<ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="contact.html">Contact</a></li>
+</ul>
+
     <img src="images/logo.png" style="display:block;margin:auto;max-width:25%;max-height:25%;">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -19,6 +26,7 @@
     <![endif]-->
   </head>
   <body>
+
 <h2> <style="font-size:16;align:center"> PEAR is the first de-centralized scientific journal to incentivize the publication of high quality articles as well as a fair peer-review process.</style></h2>
     Username:<br>
     <input type="text" id="username" value="">
@@ -26,12 +34,9 @@
     Password:<br>
     <input type="text" id="password" value="" >
     <br><br>
-    <button  id="loginButton" onclick="login($('#username').val(), $('#password').val())">Login</button>
-
+    <button  id="loginButton" onclick="login($('#username').val(), $('#password').val())">Login</button><br><br>
 
 	<hr>  
-
-    
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
