@@ -47,12 +47,12 @@ App = {
     });
     $(document).on('click', '#submissionButton', function() {
       var user = localStorage.getItem("loggedUser");
-            App.submitPaper(user);
-        });
+      App.submitPaper(user);
+    });
 
-        $(document).on('click', '#reviewButton', function() {
-            App.reviewPaper($(this));
-        });
+    $(document).on('click', '#reviewButton', function() {
+      App.reviewPaper();
+    });
   //App.createAccount();
   },
 
@@ -70,10 +70,9 @@ App = {
     }).then(function (v){
       accountsData[user]["address"] = web3.eth.coinbase;
       console.log(accountsData);
-      $('#submissionButton').show();
-        $('#reviewButton').show();
-        $('#createButton').hide();
-        App.getRep();
+      $('#submitDiv').show().children().show();
+      $('#createButton').hide();
+      App.getRep();
 
     })
   },
@@ -101,8 +100,8 @@ App = {
       console.log(papersData);
     })
   },
-/*
-  reviewPaper: function(button){
+
+  reviewPaper: function(){
     App.contracts.Agora.deployed().then(function(instance){
   		AgoraInstace = instance;
   		id = $("#ID").val;
@@ -114,35 +113,56 @@ App = {
 
 	},
 
-//get the rep of all users
-*/
+
   getRep: function(){
-  	var table = document.getElementById('reptable');
+  	var usertable = document.getElementById('userTable');
     setInterval(function(){
   	  i = 1;
     //table.innerHTML = "";
     	for (var key in accountsData) {
         if(accountsData[key]["address"] != "") {
-          if (i>=table.rows.length) {
-            var row = table.insertRow(i);
+          if (i>=usertable.rows.length) {
+            var row = usertable.insertRow(i);
             var name = row.insertCell(0);
             var rep = row.insertCell(1);
-            var paperTime = row.insertCell(2);
           } else{
-            var row = table.rows[i];
+            var row = usertable.rows[i];
             var name = row.cells[0];
             var rep = row.cells[1];
-            var paperTime = row.cells[2];
           }
   		
     		i++;
     		name.innerHTML = key;
-    		App.getUserRep(key, 0, rep);
-        
-        
+    		App.getUserRep(key, 0, rep);        
         }
       }
-      for (var j = papersData.length - 1; j >= 0; j--) {
+      var paperstable = document.getElementById('papersTable');
+      for (var j = 0; j < papersData.length; j++) {
+        if (j + 1 >= paperstable.rows.length) {
+            var row = paperstable.insertRow(j+1);
+            var paperKeyCell = row.insertCell(0);
+            var paperTime = row.insertCell(1);
+          } else{
+            var row = paperstable.rows[j+1];
+            var paperKeyCell = row.cells[0];
+            var paperTime = row.cells[1];
+          }
+          var btn = document.createElement('input');
+          btn.type = "button";
+          btn.className = "btn";
+          btn.value = papersData[j];
+          //btn.onclick = (function() {return function() {
+            //                                            $("#reviewDiv").show().children().show();
+              //                                          $("#reviewInput").val(papersData[j]);
+                //                                        }})();
+          btn.onclick = function () {
+                          $("#reviewDiv").show().children().show();
+                          $("#reviewInput").text($(this).value);
+                        }
+          paperKeyCell.innerHTML = "";
+          paperKeyCell.appendChild(btn);
+
+          //paperKeyCell.innerHTML = papersData[j];
         App.getPaperTimestamp(papersData[j], paperTime);
       }
     }, 1000)
