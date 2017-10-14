@@ -15,32 +15,42 @@
     <script src="js/sha1.js"></script>
     <script type="text/javascript" src="js/accounts.js"></script>
 <script src="js/app.js"></script>
-<table id='reptable' style="width:40%;float: right;">
+<table id="userTable" >
   <tr>
     <th>User</th>
     <th>Reputation</th> 
+  </tr>
+</table>
+
+<table id="papersTable" >
+  <tr>
+    <th>Key last paper</th>
     <th>Timestamp last paper</th> 
   </tr>
 </table>
+
+     
+
 <h1>Submission Form</h1>
 
 <body>
-        </div>
-    <div id = "actionsDiv" > 
+
+    <div id = "actionsDiv" style="display: none"> 
     <br> Private key </br>
 
         <input type="text" id="ID" value="veryPrivate">
         <br> Stake </br>
         <input type="text" id="stake" value="2">
         
-        <button id="createButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; " >Create</button>
-      <button id="submissionButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; display: none" >Submission</button>
+        
+      <button id="submissionButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; " >Submission</button>
 
 
-      <button id="reviewButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; display: none">Review</button>
+      <button id="reviewButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; ">Review</button>
 
 
     </div>
+    <button id="createButton" style="border: 6px solid black;position: relative;left: 435px; top : 100px; width: 100px; " >Create</button>
 		
 
         

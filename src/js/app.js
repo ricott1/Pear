@@ -70,10 +70,9 @@ App = {
     }).then(function (v){
       accountsData[user]["address"] = web3.eth.coinbase;
       console.log(accountsData);
-      $('#submissionButton').show();
-        $('#reviewButton').show();
-        $('#createButton').hide();
-        App.getRep();
+      $('#actionsDiv').show().children().show();
+      $('#createButton').hide();
+      App.getRep();
 
     })
   },
@@ -117,32 +116,39 @@ App = {
 //get the rep of all users
 */
   getRep: function(){
-  	var table = document.getElementById('reptable');
+  	var usertable = document.getElementById('userTable');
     setInterval(function(){
   	  i = 1;
     //table.innerHTML = "";
     	for (var key in accountsData) {
         if(accountsData[key]["address"] != "") {
-          if (i>=table.rows.length) {
-            var row = table.insertRow(i);
+          if (i>=usertable.rows.length) {
+            var row = usertable.insertRow(i);
             var name = row.insertCell(0);
             var rep = row.insertCell(1);
-            var paperTime = row.insertCell(2);
           } else{
-            var row = table.rows[i];
+            var row = usertable.rows[i];
             var name = row.cells[0];
             var rep = row.cells[1];
-            var paperTime = row.cells[2];
           }
   		
     		i++;
     		name.innerHTML = key;
-    		App.getUserRep(key, 0, rep);
-        
-        
+    		App.getUserRep(key, 0, rep);        
         }
       }
-      for (var j = papersData.length - 1; j >= 0; j--) {
+      var paperstable = document.getElementById('papersTable');
+      for (var j = 0; j < papersData.length; j++) {
+        if (j + 1 >= paperstable.rows.length) {
+            var row = paperstable.insertRow(j+1);
+            var paperKeyCell = row.insertCell(0);
+            var paperTime = row.insertCell(1);
+          } else{
+            var row = paperstable.rows[j+1];
+            var paperKeyCell = row.cells[0];
+            var paperTime = row.cells[1];
+          }
+          paperKeyCell.innerHTML = papersData[j];
         App.getPaperTimestamp(papersData[j], paperTime);
       }
     }, 1000)

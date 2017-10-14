@@ -43,8 +43,7 @@ contract Agora
     }
 
     function newAccount() public returns(bool) {
-        require(!hasAccount(msg.sender)); //gonna use require after Metropolis
-        //if (hasAccount(msg.sender)) return false;
+        require(!hasAccount(msg.sender)); 
         accounts[msg.sender].hasAccount = true;
         accounts[msg.sender].reputation = [10,10,10];
         return true;
@@ -52,7 +51,6 @@ contract Agora
 
     function deleteAccount(address addr) public onlyOwner returns(bool) {
         require(hasAccount(addr));
-        //if (!hasAccount(addr)) return false;
         accounts[addr].hasAccount = false;
         return true;
     }
@@ -62,18 +60,15 @@ contract Agora
     }
 
     function submitPaper(uint field, uint stake, address key) public returns(bool) {
-        //if (!hasAccount(msg.sender)) return false;
-        //if (accounts[msg.sender].reputation[field] < stake) return false;
-        require (hasAccount(msg.sender));       
-        require (newPaper(msg.sender, field, key));
+        require (hasAccount(msg.sender));   
+        require (accounts[msg.sender].reputation[field] >= stake);
+        require (newPaper(msg.sender, field, key));    
         accounts[msg.sender].reputation[field] -= stake;
         accounts[msg.sender].stake[field] += stake;
         return true;
     }
 
     function newPaper(address addr, uint field, address key) private returns(bool) {
-        //if (!hasAccount(addr)) return false;
-        require (hasAccount(addr));
         Paper paper;
         paper.author = addr;
         paper.field = field;
@@ -85,15 +80,10 @@ contract Agora
     }
 
     function submitReview(uint field, uint stake, address paperKey, address reviewKey, uint[3] score) public returns(bool) {
-        //if (!papers[paperKey].exists) return false;
-        //if (!hasAccount(msg.sender)) return false;
-        //if (accounts[msg.sender].reputation[field] <= 0) return false;
-        //if (accounts[msg.sender].reputation[field] < stake) return false;
-        require (papers[paperKey].exists);
         require (hasAccount(msg.sender));
+        require (papers[paperKey].exists);
         require (accounts[msg.sender].reputation[field] > 0);
         require (accounts[msg.sender].reputation[field] >= stake);
-        
         require (newReview(msg.sender, paperKey, reviewKey, score));
         accounts[msg.sender].reputation[field] -= stake;
         accounts[msg.sender].stake[field] += stake;
@@ -102,8 +92,6 @@ contract Agora
     }
 
     function newReview(address reviewerAddr, address paperKey, address k, uint[3] score) private returns(bool) {
-        //if (!hasAccount(reviewerAddr)) return false;
-        require (hasAccount(reviewerAddr));
         Review memory review;
         review.author = reviewerAddr;
         review.score = score;
@@ -115,10 +103,6 @@ contract Agora
     }
 
     function getScore(address paperKey) public constant returns(uint[3]) {
-        //uint[3] memory invalid;
-        //invalid = [0, 0, 0];
-        //if (!papers[paperKey].exists) return invalid;
-        //if (papers[paperKey].numReviews <= 0) return invalid;
         require(papers[paperKey].exists);
         uint[3] memory score;
         uint N = papers[paperKey].reviewKeys.length;
@@ -132,13 +116,11 @@ contract Agora
     }
 
     function getReputation(address addr, uint field) public constant returns(uint) {
-        //if (!hasAccount(addr)) return 0;
         require (hasAccount(addr));
         return accounts[addr].reputation[field];
     }
 
     function getPaperTimestamp(address key) public constant returns(uint) {
-        //if (!papers[key].exists) return 0;
         require (papers[key].exists);
         return papers[key].timestamp;
     }
