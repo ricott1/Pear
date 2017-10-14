@@ -39,15 +39,16 @@ App = {
 
 
   bindEvents: function() {
-    $(document).on('click', '#submissionButton', function() {
-        App.submitPaper($(this));
-    });
-
-    $(document).on('click', '#reviewButton', function() {
-        App.reviewPaper($(this));
-    });
+    
     $(document).on('click', '#loginButton', function() {
         App.createAccount();
+        $(document).on('click', '#submissionButton', function() {
+            App.submitPaper($(this));
+        });
+
+        $(document).on('click', '#reviewButton', function() {
+            App.reviewPaper($(this));
+        });
     });
   //App.createAccount();
   },
@@ -70,7 +71,7 @@ App = {
     })
   },
 
-  submitPaper: function(button){
+  submitPaper: function(){
     var paperKey;
     //var username = $("#username").value;
     //var accountAddress = accountsData[username];
@@ -110,6 +111,7 @@ App = {
   	for (var key in accountsData) {
       if(accountsData[key]["address"] != "") {
         rep = getUserRep(accountsData[key]["address"], 0);
+
       }
     }
   	}, 5000)
