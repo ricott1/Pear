@@ -65,7 +65,7 @@ App = {
       
     }).then(function (value){
       //perform the real transaction
-      return AgoraInstance.newAccount.sendTransaction({from:web3.eth.coinbase, gas: 180000});
+      return AgoraInstance.newAccount.sendTransaction({from:web3.eth.coinbase, gas: 980000});
 
     }).then(function (v){
       accountsData[user]["address"] = web3.eth.coinbase;
@@ -80,10 +80,6 @@ App = {
 
   submitPaper: function(user){
     var paperKey;
-    //var username = $("#username").value;
-    //var accountAddress = accountsData[username];
-
-
     text = accountsData[user]["address"] + $('#ID').val();
     paperKey = SHA1(text);
     console.log(paperKey);
@@ -92,12 +88,13 @@ App = {
   		stake = $("#stake").val();
 
 
-
+    console.log(stake);
   		return AgoraInstance.submitPaper.call(0, stake, paperKey);
       
     }).then(function (value){
       //perform the real transaction
-      return AgoraInstance.submitPaper.sendTransaction(0, stake, paperKey,{from:web3.eth.coinbase, gas: 1800000});
+      console.log(stake, value);
+      return AgoraInstance.submitPaper.sendTransaction(0, stake, paperKey,{from:web3.eth.coinbase, gas: 180000});
 
     }).then(function (v){
       papersData.push(paperKey);
