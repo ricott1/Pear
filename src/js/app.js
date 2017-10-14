@@ -1,9 +1,7 @@
 App = {
 
   web3Provider: null,
-  contracts: {},
-  card1: 0,
-  card2: 0,
+  contracts: {}
 
   init: function() {
     
@@ -40,21 +38,41 @@ App = {
 
 
   bindEvents: function() {
-    $(document).on('click', '#submit', function() {
+    $(document).on('click', '#submitButton', function() {
         App.submitPaper($(this));
     });
 
-    $(document).on('click', '#review', function() {
+    $(document).on('click', '#reviewButton', function() {
         App.reviewPaper($(this));
     });
   
   },
 
-  submitPaper: function(stake, id){
+  submitPaper: function(button){
+    var paperKey;
+    var username = 'Pericles';
+    var accountAddress = accountsData[username];
+    text = accountAddress + $('#ID').value;
+    paperKey = SHA1(text);
+       App.contracts.Agora.deployed().then(function(instance){
+		AgoraInstance = instance;
+		id = $("#ID").value;
+		stake = $("#stake").value;
 
+		return AgoraInstance.submitPaper(id, stake);
+			       })
   },
 
   reviewPaper: function(stake, id, score){
+       App.contracts.Agora.deployed().then(function(instance){
+		AgoraInstace = instance;
+		id = $("#ID").value;
+		stake = $("#stake").value;
+		score = $("#score").value;
+i
+	
+	
+				       })
 
 	     },
 
