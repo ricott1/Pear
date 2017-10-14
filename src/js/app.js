@@ -25,7 +25,7 @@ App = {
 
   initContract: function() {
 
-    $.getJSON('Baccara.json', function(data){
+    $.getJSON('Agora.json', function(data){
 
       // get contract artifacts
       var BaccaraArtifact = data;
