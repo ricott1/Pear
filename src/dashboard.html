@@ -15,33 +15,33 @@
     <script src="js/web3.min.js"></script>
     <script src="js/truffle-contract.js"></script>
     <script src="js/sha1.js"></script>
-    <script type="text/javascript" src="js/accounts.js"></script>
 <script src="js/app.js"></script>
-<div id="tables">
-<!- USER TABLE ->
-<table id="userTable" >
-  <tr>
-    <th>Scholar</th>
-    <th>Reputation</th> 
-  </tr>
-</table>
-<br>
 
-<!- PAPERS TABLE -> 
-<table id="papersTable" >
-  <tr>
-    <th>Paper Key</th>
-    <th>Timestamp</th> 
-  </tr>
-</table>
 
-</div>
      
 
 
 
 <body>
+    <div id="tablesDiv" style="display: none">
+    <!- USER TABLE ->
+    <table id="userTable" >
+      <tr>
+        <th>Scholar</th>
+        <th>Reputation</th> 
+      </tr>
+    </table>
+   
 
+    <!- PAPERS TABLE -> 
+    <table id="papersTable" >
+      <tr>
+        <th>Paper Key</th>
+        <th>Timestamp</th> 
+      </tr>
+    </table>
+
+    </div>
     <div id = "submitDiv" style="display: none"> 
     <h2>Submission Form</h2>
     <br> Private key 
@@ -50,15 +50,15 @@
         <br> Stake 
         <input type="text" id="stake" value="2">
         
-        
-      <button id="submissionButton" style="border: 6px solid black; " >Submission</button>
+        <br>
+      <button id="submissionButton" >Submission</button>
 
 
       
     </div>
     <div id= "reviewDiv" style="display: none">
     <h2>Review Form</h2>
-    <input id="reviewInput" value = "" style="width: 400px;" readonly></input>
+    <input id="reviewInput" value = "" style="width: 600px;" readonly></input>
         <br> Quality
         <input id="reviewQuality" style="width: 12px;"></input>
         <br> Impact
@@ -66,10 +66,10 @@
         <br> Novelty
         <input id="reviewNovelty" style="width: 12px;"></input>
         
-        
+        <br>
         <button id="reviewButton" >Review</button>
     </div>
-    <button id="createButton"  >Create Account</button>
+    <button id="createButton">Create Account</button>
 		
 
         
