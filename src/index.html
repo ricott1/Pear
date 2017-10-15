@@ -16,7 +16,8 @@
   <li><a href="contact.html">Contact</a></li>
 </ul>
 
-    <img src="images/logo.png" style="display:block;margin:auto;max-width:25%;max-height:25%;">
+    <!--<img src="images/logo.png" style="display:block;margin:auto;max-width:25%;max-height:25%;">-->
+    <img src="images/logo.png" id="banner"> 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,7 +28,7 @@
   </head>
   <body>
 
-<h2> <style="font-size:16;align:center"> PEAR is the first de-centralized scientific journal to incentivize the publication of high quality articles as well as a fair peer-review process.</style></h2>
+<h2>  PEAR is the first de-centralized scientific journal to incentivize the publication of high quality articles as well as a fair peer-review process.</h2>
     Username:<br>
     <input type="text" id="username" value="">
     <br>
@@ -52,12 +53,13 @@
 
       function login(username, password) {
         
-        if(!localStorage.accountsData) {
+	      if(!localStorage.accountsData) {
             localStorage.accountsData = JSON.stringify(accountsData);
             console.log(accData);
 
-          }
-        if(accountsData[username]) {
+          
+	      }
+	      if(accountsData[username]) {
           //loggedUser = username;
           sessionStorage.loggedUser = username;
           //console.log(sessionStorage.loggedUser);
@@ -65,11 +67,15 @@
           
           window.location='dashboard.html';
         
-      } else{
+      
+	      } else{
         $('#error').text("invalid username");
+      
+	      }
+    
       }
-    }
     </script>
     
   </body>
 </html>
+

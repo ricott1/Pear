@@ -17,6 +17,13 @@ body {
 
 }
 
+#banner{
+    display:block;
+    margin:auto;
+    width:auto;
+    height:220px;
+}
+
 #contact-form {
   max-width: 90%;
   margin: 0 auto;
@@ -244,3 +251,6 @@ a:link {
     text-decoration: none;
 
   }
+p {
+    color:#7c7f84;
+}
