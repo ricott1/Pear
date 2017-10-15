@@ -157,7 +157,7 @@ App = {
           paperKeyCell.appendChild(btn);
 
           j ++;
-          App.getPaperStake(key, paperStake);
+          //App.getPaperStake(key, paperStake);
           App.getPaperTimestamp(key, paperTime);
         } else if(localStorage.getItem(key) != "review"){
           //console.log(localStorage.getItem(key), key);
