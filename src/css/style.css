@@ -188,7 +188,7 @@ input:required:invalid {
 }
 
 button{
-    background-color: #E46FAB; /* Green */
+    background-color: #E46FAB; /* Pink*/
     border: none;
     color: white;
     font-weight:bold;
@@ -227,30 +227,38 @@ small {
 
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-
-}
-
-li {
-    float: left;
-
-}
-
-li a {
-    display: block;
-    padding: 8px;
-    background-color: white;
-    color:#7c7f84;
-
-}
 a:link {
     text-decoration: none;
 
   }
 p {
     color:#7c7f84;
+}
+a:active { 
+    color: #E46FAB; /* Pink*/
+ }
+.topnav {
+  overflow: hidden;
+  background-color: white;
+
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #7c7f84;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 18px;
+
+}
+
+.topnav a:hover {
+	color:#E46FAB;
+
+}
+
+.topnav a.active {
+	color:#E46FAB;
 }
