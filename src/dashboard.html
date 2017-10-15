@@ -23,28 +23,30 @@
 
 
 <body>
-    <div id="tablesDiv" style="display: none">
-    <!- USER TABLE ->
+    <div id="tablesDiv" style="display: none;">
+    <div style="float: left;margin-right: 40px;">
     <table id="userTable" >
       <tr>
         <th>Scholar</th>
         <th>Reputation</th> 
       </tr>
     </table>
+    </div>
    
 
-    <!- PAPERS TABLE -> 
+    <div style="float: left;margin-right: 4;"">
     <table id="papersTable" >
       <tr>
         <th>Paper Key</th>
         <th>Timestamp</th> 
       </tr>
     </table>
+    </div>
 
     </div>
     <div id = "submitDiv" style="display: none"> 
     <h2>Submission Form</h2>
-    <br>Private key:  
+    Private key:  
 
         <input type="text" id="ID" value="veryPrivate">
         Stake:         <input type="text" id="stake" value="2" style="width: 40px;">
@@ -57,6 +59,7 @@
     </div>
     <div id= "reviewDiv" style="display: none">
     <h2>Review Form</h2>
+
     <input id="reviewInput" value = "" style="width: 500px;" readonly></input>
         <br>Quality: 
         <input id="reviewQuality" style="width: 16px;"></input>

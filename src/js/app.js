@@ -173,6 +173,7 @@ App = {
           if(localStorage.getItem(key) == sessionStorage.user) {
             name.style.color = 'red';
           }
+		else {name.style.color= 'black';}
       		App.getUserRep(key, 0, rep);        
         }
       }
