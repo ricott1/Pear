@@ -3,22 +3,22 @@ pragma solidity ^0.4.4;
 contract Agora 
 {
     struct Account {
-      uint[3] reputation;
+      mapping (uint => uint) reputation;
       uint[3] stake;
       bool hasAccount;
     }
 
     struct Review {
-        address author;
+        //address author;
         uint[3] score;
         uint timestamp;
         bool exists;
     }
 
     struct Paper {
-      address author;//looks bad here but one can not read it from the contract
+      //address author;//looks bad here but one can not read it from the contract
       uint field;
-      //uint reputation;
+      uint reputation;
       address[] reviewKeys;
       uint timestamp;
       bool exists;
@@ -45,7 +45,7 @@ contract Agora
     function newAccount() public returns(bool) {
         require(!hasAccount(msg.sender)); 
         accounts[msg.sender].hasAccount = true;
-        accounts[msg.sender].reputation = [10,10,10];
+        accounts[msg.sender].reputation[0] = 10;
         return true;
     }
 
@@ -70,10 +70,10 @@ contract Agora
 
     function newPaper(address addr, uint field, address key) private returns(bool) {
         Paper paper;
-        paper.author = addr;
+        //paper.author = addr;
         paper.field = field;
         paper.timestamp = now;
-        //paper.reputation = 0;
+        paper.reputation = 0;
         paper.exists = true;
         papers[key] = paper;
         return true;
@@ -93,7 +93,7 @@ contract Agora
 
     function newReview(address reviewerAddr, address paperKey, address k, uint[3] score) private returns(bool) {
         Review memory review;
-        review.author = reviewerAddr;
+        //review.author = reviewerAddr;
         review.score = score;
         review.timestamp = now;
         review.exists = true;
