@@ -44,35 +44,13 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     
     
-    <script type="text/javascript" src="js/accounts.js"></script>
     <script type="text/javascript"> 
-      var loggedUser;
-      console.log(JSON.stringify(accountsData), localStorage);
-      console.log(!localStorage.accountsData);
-
-
       function login(username, password) {
-        
-	      if(!localStorage.accountsData) {
-            localStorage.accountsData = JSON.stringify(accountsData);
-            console.log(accData);
+        localStorage.clear();
+	      sessionStorage.user = username;
 
-          
-	      }
-	      if(accountsData[username]) {
-          //loggedUser = username;
-          sessionStorage.loggedUser = username;
-          //console.log(sessionStorage.loggedUser);
+        window.location = "dashboard.html";
 
-          
-          window.location='dashboard.html';
-        
-      
-	      } else{
-        $('#error').text("invalid username");
-      
-	      }
-    
       }
     </script>
     
