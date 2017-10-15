@@ -121,6 +121,7 @@ App = {
 
 
   getRep: function(){
+    $("#tablesDiv").show().children().show();
   	
     setInterval(function(){
   	  i = 1;
