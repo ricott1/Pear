@@ -1,6 +1,6 @@
 pragma solidity ^0.4.4;
 
-contract Agora 
+contract Pear 
 {
     struct Account {
       mapping (uint => uint) reputation;
@@ -34,7 +34,7 @@ contract Agora
         _;
     } 
 
-    function Agora() {
+    function Pear() {
         owner = msg.sender;
     }
  
