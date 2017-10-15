@@ -390,8 +390,14 @@
       "links": {},
       "address": "0x7e27ccb0b50c77e45ed21eb64d2f5b4032c7a776",
       "updated_at": 1508038629757
+    },
+    "1508060066452": {
+      "events": {},
+      "links": {},
+      "address": "0xb88bc344c9f30438793b1aae71b93eccdbf861ab",
+      "updated_at": 1508060103143
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1508038629757
+  "updated_at": 1508060103143
 }
