@@ -157,6 +157,7 @@ App = {
           j ++;
           App.getPaperTimestamp(key, paperTime);
         } else if(localStorage.getItem(key) != "review"){
+          //console.log(localStorage.getItem(key), key);
           if (i>=usertable.rows.length) {
             var row = usertable.insertRow(i);
             var name = row.insertCell(0);
@@ -169,6 +170,9 @@ App = {
   		
       		i++;
       		name.innerHTML = localStorage.getItem(key);
+          if(localStorage.getItem(key) == sessionStorage.user) {
+            name.style.color = 'red';
+          }
       		App.getUserRep(key, 0, rep);        
         }
       }
@@ -182,7 +186,8 @@ App = {
       AgoraInstance = instance;
       return AgoraInstance.getReputation.call(key, field);
           }).then(function(rep) {
-            entry.innerHTML = rep;
+            //console.log(rep.c[0], key);
+            entry.innerHTML = rep.c[0];
           })
 
   },
