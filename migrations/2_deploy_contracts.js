@@ -1,5 +1,5 @@
-var Agora = artifacts.require("./Agora.sol");
+var Pear = artifacts.require("./Pear.sol");
 
 module.exports = function(deployer){
-    deployer.deploy(Agora);
+    deployer.deploy(Pear);
 };
