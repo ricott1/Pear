@@ -50,7 +50,6 @@ App = {
     $(document).on('click', '#reviewButton', function() {
       App.reviewPaper();
     });
-  //App.createAccount();
   },
 
   createAccount : function(user) {
@@ -144,10 +143,6 @@ App = {
           var btn = document.createElement('input');
           btn.type = "button";
           btn.value = key;
-          //btn.onclick = (function() {return function() {
-            //                                            $("#reviewDiv").show().children().show();
-              //                                          $("#reviewInput").val(papersData[j]);
-                //                                        }})();
           btn.onclick = function () {
                           $("#reviewDiv").show().children().show();
                           console.log($("#reviewInput"));
@@ -181,7 +176,7 @@ App = {
         }
       }
       
-    }, 1000)
+    }, 5000)
 
   },
 
