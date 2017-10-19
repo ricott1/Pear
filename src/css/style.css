@@ -1,8 +1,4 @@
-head{
-padding-top:10px;
-padding-bottom:50px;
-horizontal-align:middle;
-}
+
 body {
   font-family: 'HelveticaNeue', Helvetica;
   font-size: 20px;
@@ -13,16 +9,81 @@ body {
   text-align: center;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
-  padding:100px 200px 100px;
+  display: grid;
+  grid-template-areas: 
+    "header header header"
+    "nav div div "
+    "nav footer footer";
+  grid-template-rows: 140px 1fr 70px;  
+  grid-template-columns: 20% 1fr 15%;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  height: 100vh;
+  margin: 0;
 
 }
+
+ 
+header, footer, nav, div {
+  padding: 1.2em;
+  }
 
 #banner{
-    display:block;
-    margin:auto;
-    width:auto;
-    height:220px;
+  float:left;
+  height: 110px;
 }
+
+#pageHeader {
+  grid-area: header;
+  horizontal-align:middle;
+  vertical-align:middle;
+  overflow: hidden;
+  background-color: white;
+}
+
+.alink {
+  float: left;
+  display: block;
+  color: #7c7f84;
+  text-align: center;
+padding: 14px 16px;
+  
+  font-size: 18px;
+}
+
+.alink:hover {
+  color:#E46FAB;
+
+}
+
+.alink.active {
+  color:#E46FAB;
+}
+  }
+#pageFooter {
+  grid-area: footer;
+  }
+#mainDiv { 
+  grid-area: div;      
+  }
+#mainNav { 
+  grid-area: nav; 
+  }
+
+/* Stack the layout on small devices/viewports. */
+@media all and (max-width: 575px) {
+  body { 
+    grid-template-areas: 
+      "header"
+      "article"
+      "nav"
+      "footer";
+    grid-template-rows: 80px 1fr 70px 1fr 70px;  
+    grid-template-columns: 1fr;
+ }
+}
+
+
 
 #contact-form {
   max-width: 90%;
@@ -197,13 +258,10 @@ button{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-<<<<<<< HEAD
-	margin-top:20px;
-	margin-bottom: 20px;
-=======
+
     margin-top: 10px;
     margin-bottom: 10px;
->>>>>>> experimental
+
 }
 
 button:hover small {
@@ -244,28 +302,4 @@ p {
 a:active { 
     color: #E46FAB; /* Pink*/
  }
-.topnav {
-  overflow: hidden;
-  background-color: white;
 
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #7c7f84;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 18px;
-
-}
-
-.topnav a:hover {
-	color:#E46FAB;
-
-}
-
-.topnav a.active {
-	color:#E46FAB;
-}

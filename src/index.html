@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,49 +11,77 @@
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
     <link href="css/style.css" rel="stylesheet">
 
-<div class="topnav">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact77</a>
-</div>
+    
 
     <!--<img src="images/logo.png" style="display:block;margin:auto;max-width:25%;max-height:25%;">-->
-    <img src="images/logo.png" id="banner"> 
+     
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
 
-<h3>  The first decentralized scientific journal and peer-review mechanism.</h3>
-    Username:<br>
-    <input type="text" id="username" value="">
-    <br>
-    Password:<br>
-    <input  id="password" value="" type="password">
-    <br><br>
-    <button  id="loginButton" onclick="login($('#username').val(), $('#password').val())">Get Started</button><br><br>
-
-	<hr>  
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    
-    
-    <script type="text/javascript"> 
-      function login(username, password) {
-        //localStorage.clear();
-	      //sessionStorage.user = username;
 
-        window.location = "dashboard.html";
 
-      }
-    </script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/sha1.js"></script>
+    <script src="js/app.js"></script>
+  </head>
+
+  <body>
+      <header id="pageHeader">
+        
+
+        <a href="index.html" class="alink"><img src="images/logo.png" id="banner" ></a>
+        <a href="about.html" class="alink">About</a>
+        <a href="contact.html" class="alink">Contact</a>
+
+        
+      
+
+      </header>
+      <nav id="mainNav"></nav>
+      <footer id="pageFooter">What's up Carlos?</footer>
+      <div id="mainDiv">
+          <h3>  Decentralized scientific journal and peer-review mechanism.</h3>
+          Username:<br>
+          <input type="text" id="username" value="">
+          <br>
+          Password:<br>
+          <input  id="password" value="" type="password">
+          <br><br>
+          <button  id="loginButton" onclick="login($('#username').val(), $('#password').val())">Get Started</button><br><br>
+
+      	<hr>  
+      </div>
+      <script type="text/javascript"> 
+        $(function() {
+          $(window).load(function() {
+            for (var key in localStorage) {
+              if(sessionStorage.user == localStorage.getItem(key)) {
+                $("#createButton").hide();
+                $('#submitDiv').show().children().show();
+                $('#createButton').hide();
+                
+                break;
+              }
+            }
+            App.init();
+          });
+        });
+        function login(username, password) {
+          //localStorage.clear();
+  	      //sessionStorage.user = username;
+
+          window.location = "dashboard.html";
+
+        }
+      </script>
     
   </body>
 </html>

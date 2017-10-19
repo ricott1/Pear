@@ -31,19 +31,6 @@ The step that we have yet to test is the allocation of Reputation based on the d
 
 At the moment we have implemented a very simple identification server and interface for the smart contract that manages submissions and reviews. Users are able to sign up, make a transaction to log their assigned key to the blockchain and submit a reference to an off-chain paper with stake. The contract can also accept reviews from any reviewer with sufficient reputation in the paper’s field and hold their reputation until the submission period closes. 
 
-## Challenges we faced
-
-The main challenge we faced once we started thinking seriously about the implementation was the problem of anonymity. Initially we wanted to implement the majority of our framework on-chain and perhaps make use of key ring cryptography to anonymously verify that a reviewer from a particular field evaluated an article. However, given time limitations and the high cost of on-chain operations we decided to set up the anonymity component on a central server and decided to focus on the most innovative aspect of the idea which was the management of submissions and reviews by a smart contract. 
-
-## Accomplishments that we're proud of 
-
-We are very proud to have come up with and started building an application that we believe could benefit the community in which we work, with the potential of helping other communities once the platform is more fully developed. We are also proud of building an entire application from start to finish with limited Ethereum development experience. Finally, we were very pleasantly surprised to hear a lot great responses to our idea from other hackers, mentors and sponsors which makes us hopeful that this idea is one we can carry forward in the long term. 
-
-
-
-## What we learned
-            
-We learned a lot about creating and interfacing with smart contracts, the process of going from the back-end part that lives on the blockchain to the front-end portion that can be viewed from the browser. We also learned to think more carefully about which pieces of the application should be stored on the blockchain and which pieces would yield no benefit by being stored on the blockchain compared to being stored off-chain.  
 
 ## What's next for Pear 
 

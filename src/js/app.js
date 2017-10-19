@@ -219,17 +219,4 @@ App = {
 };
 
 
-$(function() {
-  $(window).load(function() {
-    for (var key in localStorage) {
-      if(sessionStorage.user == localStorage.getItem(key)) {
-        $("#createButton").hide();
-        $('#submitDiv').show().children().show();
-        $('#createButton').hide();
-        
-        break;
-      }
-    }
-    App.init();
-  });
-});
+
