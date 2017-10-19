@@ -13,9 +13,9 @@ body {
   grid-template-areas: 
     "header header header"
     "nav div div "
-    "nav footer footer";
+    "footer footer footer";
   grid-template-rows: 140px 1fr 70px;  
-  grid-template-columns: 20% 1fr 15%;
+  grid-template-columns: 15% 1fr 15%;
   grid-row-gap: 10px;
   grid-column-gap: 10px;
   height: 100vh;
@@ -39,6 +39,7 @@ header, footer, nav, div {
   vertical-align:middle;
   overflow: hidden;
   background-color: white;
+  border:3px solid black;
 }
 
 .alink {
@@ -62,12 +63,15 @@ padding: 14px 16px;
   }
 #pageFooter {
   grid-area: footer;
+  border:3px solid black;
   }
 #mainDiv { 
-  grid-area: div;      
+  grid-area: div;
+  border:3px solid black;      
   }
 #mainNav { 
-  grid-area: nav; 
+  grid-area: nav;
+  border:3px solid black; 
   }
 
 /* Stack the layout on small devices/viewports. */

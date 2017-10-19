@@ -4,7 +4,6 @@ App = {
   contracts: {},
 
   init: function() {
-    App.getRep();
     return App.initWeb3();
   },
 
@@ -40,7 +39,7 @@ App = {
 
   bindEvents: function() {
     $(document).on('click', '#createButton', function() {
-      App.createAccount(sessionStorage.user);
+      App.createAccount("ale");
 
     });
     $(document).on('click', '#submissionButton', function() {
@@ -64,7 +63,7 @@ App = {
       return PearInstance.newAccount.sendTransaction({from:web3.eth.coinbase, gas: 980000});
 
     }).then(function (v){
-      localStorage.setItem(web3.eth.coinbase, user);
+      //localStorage.setItem(web3.eth.coinbase, user);
       $('#submitDiv').show().children().show();
       $('#createButton').hide();
       //App.getRep();
@@ -119,7 +118,7 @@ App = {
 	},
 
 
-  getRep: function(){
+/*  getRep: function(){
     $("#tablesDiv").show().children().show();
   	
     setInterval(function(){
@@ -211,7 +210,7 @@ App = {
 
           })
 
-  },
+  },*/
 
 
 

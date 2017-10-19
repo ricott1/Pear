@@ -31,19 +31,28 @@
     <script src="js/truffle-contract.js"></script>
     <script src="js/sha1.js"></script>
     <script src="js/app.js"></script>
+    <script type="text/javascript"> 
+        $(function() {
+          $(window).load(function() {
+            
+            App.init();
+          });
+        });
+        function login(username, password) {
+          //localStorage.clear();
+          //sessionStorage.user = username;
+
+          window.location = "dashboard.html";
+
+        }
+      </script>
   </head>
 
   <body>
       <header id="pageHeader">
-        
-
         <a href="index.html" class="alink"><img src="images/logo.png" id="banner" ></a>
         <a href="about.html" class="alink">About</a>
         <a href="contact.html" class="alink">Contact</a>
-
-        
-      
-
       </header>
       <nav id="mainNav"></nav>
       <footer id="pageFooter">What's up Carlos?</footer>
@@ -59,29 +68,7 @@
 
       	<hr>  
       </div>
-      <script type="text/javascript"> 
-        $(function() {
-          $(window).load(function() {
-            for (var key in localStorage) {
-              if(sessionStorage.user == localStorage.getItem(key)) {
-                $("#createButton").hide();
-                $('#submitDiv').show().children().show();
-                $('#createButton').hide();
-                
-                break;
-              }
-            }
-            App.init();
-          });
-        });
-        function login(username, password) {
-          //localStorage.clear();
-  	      //sessionStorage.user = username;
-
-          window.location = "dashboard.html";
-
-        }
-      </script>
+      
     
   </body>
 </html>

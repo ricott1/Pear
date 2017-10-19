@@ -3,7 +3,7 @@ pragma solidity ^0.4.15;
 contract Pear 
 {
     struct Account {
-      mapping (address => uint) reputation;
+      mapping (uint => uint) reputation;
       //uint[3] stake;
       bool hasAccount;
     }
@@ -29,6 +29,7 @@ contract Pear
     mapping (address => Paper) public papers;
     mapping (address => Review) public reviews;
     address owner;
+    uint reviewEndTime = 100;
 
     modifier onlyOwner {
         require(msg.sender == owner);
@@ -45,8 +46,8 @@ contract Pear
         _;
     }
 
-    modifier beforeEndReview(uint ) {
-        require(accounts[addr].hasAccount == false);
+    modifier beforeEndReview(uint time) {
+        require(time < reviewEndTime);
         _;
     }
 
